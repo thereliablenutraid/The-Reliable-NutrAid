@@ -377,7 +377,9 @@ input:focus,select:focus,textarea:focus{border-color:var(--navy);box-shadow:0 0 
         </div>
         <label for="b-time">Preferred time<select id="b-time"><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Any time</option></select></label>
         <div class="mute" style="font-size:.88rem">Please do not enter detailed medical information here. Your dietitian will ask for it in your consultation.</div>
-        <button class="btn" type="submit">Request a consultation</button>
+        <label class="ck" for="b-consent" style="display:flex;gap:10px;align-items:flex-start;font-weight:400"><input type="checkbox" id="b-consent" style="width:auto;margin-top:5px"><span>I agree that The Reliable NutrAid may contact me about this request.</span></label>
+        <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="b-web">Leave this empty<input id="b-web" tabindex="-1" autocomplete="off"></label></div>
+        <button class="btn" type="submit" id="b-send">Request a consultation</button>
         <div id="formmsg" role="status"></div>
       </form>
     </div>
@@ -489,11 +491,23 @@ $('#b-area').innerHTML=AREAS.map(a=>`<option>${esc(a.n)}</option>`).join('')+'<o
 /* team */
 $('#team').innerHTML=['Diabetes and hormones','Kidney health','Women and pregnancy','Newborns and children','Weight and body composition','Heart health'].map(s=>`<div class="person"><div class="avatar" aria-hidden="true">Dt.</div><div><b>Dietitian profile</b><div class="mute" style="font-size:.92rem">${esc(s)}</div></div><span class="tag warn">Profile coming soon</span></div>`).join('');
 /* booking */
-$('#bookform').addEventListener('submit',e=>{
+const ENDPOINT='https://crm.trnorg.com/api/v1/public/enquiries',LIVE=location.hostname==='thereliablenutraid.trnorg.com',T0=Date.now();
+$('#bookform').addEventListener('submit',async e=>{
   e.preventDefault();
-  const n=$('#b-name').value.trim(),c=$('#b-contact').value.trim(),m=$('#formmsg');
-  if(!n||!c){m.innerHTML='<div class="note rv" role="alert">Please add your name and a phone number or email so we can reach you.</div>';return}
-  m.innerHTML=`<div class="confirm"><span class="tag">Preview</span><b>Thank you, ${esc(n)}.</b><p>On the live website this request goes to our care team, who will match you with a dietitian (${esc($('#b-area').value)}) and contact you by ${esc($('#b-how').value.toLowerCase())} for a ${esc($('#b-time').value.toLowerCase())} appointment.</p><p class="mute" style="font-size:.9rem">This is a preview: nothing was sent.</p></div>`;
+  const n=$('#b-name').value.trim(),c=$('#b-contact').value.trim(),m=$('#formmsg'),btn=$('#b-send');
+  const warn=t=>m.innerHTML=`<div class="note" role="alert">${t}</div>`;
+  if(!n||!c)return warn('Please add your name and a phone number or email so we can reach you.');
+  if(!$('#b-consent').checked)return warn('Please tick the box to agree that we may contact you.');
+  const area=$('#b-area').value,how=$('#b-how').value,tm=$('#b-time').value;
+  const ok=()=>{m.innerHTML=`<div class="confirm"><span class="tag">${LIVE?'Sent':'Preview'}</span><b>Thank you, ${esc(n)}.</b><p>${LIVE?'Our care team has your request':'On the live website the care team receives your request'}. We will match you with a dietitian (${esc(area)}) and contact you by ${esc(how.toLowerCase())} for a ${esc(tm.toLowerCase())} appointment.</p>${LIVE?'':'<p class="mute" style="font-size:.9rem">This is a preview: nothing was sent.</p>'}</div>`;$('#bookform').reset()};
+  if(!LIVE)return ok();
+  btn.disabled=true;btn.textContent='Sending…';warn('Sending your request. The first one can take up to a minute while our system wakes up.');
+  const ctl=new AbortController(),to=setTimeout(()=>ctl.abort(),90000);
+  try{
+    const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},signal:ctl.signal,body:JSON.stringify({name:n,who:$('#b-age').value,area,note:$('#b-note').value.trim(),how,contact:c,time:tm,consent:true,website:$('#b-web').value,ms:Date.now()-T0})});
+    if(r.ok)ok();else{let d='';try{d=(await r.json()).detail}catch(_){}warn(typeof d==='string'&&d?esc(d):'We could not send your request. Please email thereliablenutraid.info@trnorg.com.')}
+  }catch(err){warn('We could not send your request. Please email thereliablenutraid.info@trnorg.com.')}
+  clearTimeout(to);btn.disabled=false;btn.textContent='Request a consultation';
 });
 $('#copy').onclick=async()=>{const t=$('#mail').textContent;try{await navigator.clipboard.writeText(t);$('#copy').textContent='Copied'}catch(e){const r=document.createRange();r.selectNodeContents($('#mail'));const s=getSelection();s.removeAllRanges();s.addRange(r);$('#copy').textContent='Press copy keys'}setTimeout(()=>$('#copy').textContent='Copy',2000)};
 /* patient area */
