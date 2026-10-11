@@ -387,7 +387,7 @@ footer .script{color:var(--mint)}
 /* patient area (preview) */
 .hd2{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
 .big{font-family:var(--fh);font-size:2.4rem;line-height:1}
-.bar{height:10px;border-radius:99px;background:var(--surface2);overflow:hidden}.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--green),var(--navy));transition:width .5s var(--ease)}
+.pbar{height:10px;border-radius:99px;background:var(--surface2);overflow:hidden}.pbar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--green),var(--navy));transition:width .5s var(--ease)}
 .tklist{display:grid;gap:8px}
 .tkrow{display:grid;grid-template-columns:28px 1fr auto;gap:12px;align-items:center;text-align:left;background:var(--bg);border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;cursor:pointer;transition:border-color .25s,background-color .25s,transform .25s var(--ease)}
 .tkrow:hover{border-color:var(--navy);transform:translateY(-1px)}
@@ -676,7 +676,7 @@ const TODAY=[['m1','8:00','Morning medicine','With breakfast'],['b','8:30','Brea
 const tkb=(id,l,sub,right)=>`<button class="tkrow" data-act="done" data-id="${id}" aria-pressed="${!!PS.done[id]}"><span class="tkbox" aria-hidden="true"></span><span><b>${l}</b><span class="mute"> ${sub}</span></span><span class="mute tr">${right}</span></button>`;
 const P={
  today:()=>{const n=TODAY.filter(t=>PS.done[t[0]]).length,pc=Math.round(n/TODAY.length*100);
-  return `<div class="box"><div class="hd2"><div><span class="tag warn">Example</span><h3 style="margin-top:6px">Today’s care</h3><div class="mute">Small steps that add up. Tap to tick them off.</div></div><div class="big">${n}<span class="mute">/${TODAY.length}</span></div></div><div class="bar"><i style="width:${pc}%"></i></div>
+  return `<div class="box"><div class="hd2"><div><span class="tag warn">Example</span><h3 style="margin-top:6px">Today’s care</h3><div class="mute">Small steps that add up. Tap to tick them off.</div></div><div class="big">${n}<span class="mute">/${TODAY.length}</span></div></div><div class="pbar"><i style="width:${pc}%"></i></div>
    <div class="tklist">${TODAY.map(t=>tkb(t[0],t[2],t[3],t[1])).join('')}</div></div>
   <div class="box wkcard"><div><b>Your weekly update is due Sunday</b><div class="mute" style="font-size:.95rem">A one-minute check on how your week went.</div></div><button class="btn sm" data-act="gowk">Start now</button></div>
   <div class="box"><h3>How are you feeling today?</h3><div class="chips" data-grp="mood">${['Great','Okay','Not great','Unwell'].map(x=>`<button class="chip" data-act="mood" data-v="${x}" aria-pressed="${PS.mood===x}">${x}</button>`).join('')}</div>
