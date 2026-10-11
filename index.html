@@ -256,7 +256,7 @@ h1{letter-spacing:-.02em} h2{letter-spacing:-.012em}
 .faq summary::after{content:"+";font-size:1.4rem;line-height:1;color:var(--red);transition:transform .35s var(--ease)}
 .faq details[open] summary::after{transform:rotate(45deg)}
 .faq details[open] p{animation:fadeup .4s var(--ease) both}
-.pbody>*{animation:fadeup .5s var(--ease) both}.pbody>:nth-child(2){animation-delay:.07s}.pbody>:nth-child(3){animation-delay:.14s}
+.pbody.anim>*{animation:fadeup .5s var(--ease) both}.pbody.anim>:nth-child(2){animation-delay:.07s}.pbody.anim>:nth-child(3){animation-delay:.14s}
 .phone{border-radius:24px;box-shadow:var(--shadow)}
 .ptabs button{transition:background-color .25s,color .25s}
 form.book,.finder{transition:box-shadow .3s}
@@ -384,6 +384,36 @@ footer .script{color:var(--mint)}
 .hero+.wrap .cta-band{margin-bottom:0}
 @media (max-width:860px){.air{margin-top:96px}.duo2{grid-template-columns:minmax(0,1fr);gap:48px}.flow{grid-template-columns:minmax(0,1fr)}.flow>div{border-right:0;border-bottom:1px solid var(--line);padding:26px 4px}.cta-band{margin-top:96px}.ticker{margin-top:44px}}
 
+/* patient area (preview) */
+.hd2{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+.big{font-family:var(--fh);font-size:2.4rem;line-height:1}
+.bar{height:10px;border-radius:99px;background:var(--surface2);overflow:hidden}.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--green),var(--navy));transition:width .5s var(--ease)}
+.tklist{display:grid;gap:8px}
+.tkrow{display:grid;grid-template-columns:28px 1fr auto;gap:12px;align-items:center;text-align:left;background:var(--bg);border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;cursor:pointer;transition:border-color .25s,background-color .25s,transform .25s var(--ease)}
+.tkrow:hover{border-color:var(--navy);transform:translateY(-1px)}
+.tkrow[aria-pressed="true"]{background:var(--green-bg);border-color:var(--green)}.tkrow[aria-pressed="true"] b{text-decoration:line-through;opacity:.7}
+.tkrow .tr{font-size:.85rem}
+.tkbox{width:24px;height:24px;border-radius:8px;border:2px solid var(--line);display:grid;place-items:center;transition:all .25s}
+.tkrow[aria-pressed="true"] .tkbox{background:var(--green);border-color:var(--green)}.tkrow[aria-pressed="true"] .tkbox::after{content:"✓";color:#fff;font-size:.9rem;line-height:1}
+.optgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.opt{display:grid;gap:4px;text-align:left;background:var(--bg);border:1.5px solid var(--line);border-radius:18px;padding:16px;cursor:pointer;transition:all .25s var(--ease)}
+.opt:hover{border-color:var(--navy);transform:translateY(-2px)}.opt[aria-pressed="true"]{border-color:var(--green);background:var(--green-bg);box-shadow:0 0 0 3px color-mix(in srgb,var(--green) 25%,transparent)}
+.opt span{font-size:.9rem}
+.sw2{display:flex;gap:8px;align-items:center;font-weight:600;cursor:pointer}.sw2 input{width:auto}
+.entries{display:grid;gap:10px}.entry{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start}
+.goals{display:grid;gap:16px}.goal{display:grid;gap:8px}
+.ptabs{gap:4px}.ptabs button{padding:10px 16px}
+.phone{max-width:860px;margin-inline:auto}
+
+.chart{width:100%;height:auto;max-width:100%}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;text-align:center}.stats b{display:block;font-family:var(--fh);font-size:1.5rem}
+.gl{display:grid;gap:2px;padding:12px 0;border-top:1px solid var(--line)}
+.wq{display:grid;gap:8px;padding:10px 0;border-top:1px solid var(--line)}
+.wkcard{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;background:linear-gradient(135deg,var(--green-bg),var(--surface))}
+.nrow{padding:6px 0}.nrow input{width:auto}
+
+.box>.tag{justify-self:start}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   .sw path{stroke-dashoffset:0}.track{animation:none;flex-wrap:wrap;width:auto}
@@ -422,16 +452,16 @@ footer .script{color:var(--mint)}
     <div class="air">
       <div class="rv center"><p class="eyebrow">One care team</p><h2>A doctor to diagnose.<br>A dietitian to guide.</h2></div>
       <div class="duo2">
-        <div class="rv"><div class="ri" data-ic="steth"></div><h3>Your doctor</h3><p class="mute">Assesses your health, makes the medical diagnosis and advises on treatment.</p></div>
-        <div class="rv"><div class="ri" data-ic="leaf"></div><h3>Your dietitian</h3><p class="mute">Turns it into a nutrition plan that fits your food, routine and culture.</p></div>
+        <div class="rv"><div class="ri" data-ic="steth"></div><h3>Your doctor</h3><p class="mute">Assesses your health, makes the medical diagnosis and guides your treatment.</p></div>
+        <div class="rv"><div class="ri" data-ic="leaf"></div><h3>Your dietitian</h3><p class="mute">Helps you choose a way of eating you can live with. Your food, your decisions, with expert guidance.</p></div>
       </div>
     </div>
     <div class="air">
       <div class="rv center"><p class="eyebrow">How it works</p><h2>Simple from the first message</h2></div>
       <div class="flow">
         <div class="rv"><span class="n">1</span><h3>Tell us about you</h3><p class="mute">Two minutes, no referral needed.</p></div>
-        <div class="rv"><span class="n">2</span><h3>Meet your team online</h3><p class="mute">Diagnosis and a plan, from home.</p></div>
-        <div class="rv"><span class="n">3</span><h3>Keep improving</h3><p class="mute">Follow-ups that adjust as you do.</p></div>
+        <div class="rv"><span class="n">2</span><h3>Meet your team online</h3><p class="mute">Individual care and therapy, from home.</p></div>
+        <div class="rv"><span class="n">3</span><h3>Keep improving</h3><p class="mute">Follow-ups and reminders that adjust as you do.</p></div>
       </div>
     </div>
     <div class="cta-band rv"><span class="script">Nourishing Lives</span><h2>Ready when you are</h2><p>Tell us what you need and we will match you with the right doctor, dietitian or both.</p><button class="btn" data-go="book">Book a consultation</button></div>
@@ -448,11 +478,11 @@ footer .script{color:var(--mint)}
 
 <!-- HOW -->
 <section class="view" id="v-how" data-title="How it works"><div class="wrap">
-  <div class="head"><p class="eyebrow">How it works</p><h1>What happens, step by step</h1><p class="mute">Every patient is looked after in the same clear order, so nothing is skipped and your plan always rests on a clear diagnosis.</p></div>
+  <div class="head"><p class="eyebrow">How it works</p><h1>What happens, step by step</h1><p class="mute">Every patient is looked after in the same clear order, so nothing is skipped and your care always rests on a clear diagnosis.</p></div>
   <div class="timeline">
     <div class="tl rv"><div class="dot">1</div><div><h3>We look at the whole picture</h3><p class="mute">Your doctor and dietitian ask about your health, medicines, daily routine, food and drink, and review any test results or body-composition reports you share.</p></div></div>
     <div class="tl rv"><div class="dot">2</div><div><h3>We explain what we found</h3><p class="mute">Your doctor makes the medical diagnosis. Your dietitian names the nutrition problems that matter most. Both explain it in plain words, so you know what the plan is for.</p></div></div>
-    <div class="tl rv"><div class="dot">3</div><div><h3>You get a plan that fits your life</h3><p class="mute">Your doctor advises on treatment. Your dietitian gives goals, daily targets and meal guidance based on your condition and culture. Your plan is yours to use and to ask questions about.</p></div></div>
+    <div class="tl rv"><div class="dot">3</div><div><h3>You decide, with expert guidance</h3><p class="mute">Your doctor advises on treatment. Your dietitian explains your options and the guardrails for your condition. You choose the dietary pattern that fits your life and culture, and we support it with therapy, reminders and follow-up.</p></div></div>
     <div class="tl rv"><div class="dot">4</div><div><h3>We check progress together</h3><p class="mute">At each follow-up your care team compares with where you started, celebrate what is working and change what is not.</p></div></div>
   </div>
   <div class="two">
@@ -469,7 +499,7 @@ footer .script{color:var(--mint)}
 
 <!-- TEAM -->
 <section class="view" id="v-team" data-title="Our team"><div class="wrap">
-  <div class="head"><p class="eyebrow">Our team</p><h1>Doctors and dietitians, working together</h1><p class="mute">Doctors assess and diagnose. Dietitians turn the diagnosis into a nutrition plan. You are matched with the right people for your condition.</p></div>
+  <div class="head"><p class="eyebrow">Our team</p><h1>Doctors and dietitians, working together</h1><p class="mute">Doctors assess and diagnose. Dietitians help you choose and follow a way of eating that suits your condition. You are matched with the right people for your condition.</p></div>
   <div class="sect" style="margin-top:0"><h2>Our doctors</h2><div class="team" id="docs"></div></div>
   <div class="sect"><h2>Our dietitians</h2><div class="team" id="team"></div></div>
   <div class="sect">
@@ -519,11 +549,11 @@ footer .script{color:var(--mint)}
 
 <!-- PATIENT AREA -->
 <section class="view" id="v-portal" data-title="Patient area"><div class="wrap">
-  <div class="head"><p class="eyebrow">Patient area</p><h1>Your plan, appointments and reports in one place</h1><p class="mute">Preview of what patients will see after signing in. All names, dates and figures below are examples.</p></div>
+  <div class="head"><p class="eyebrow">Patient area</p><h1>Your care, in your pocket</h1><p class="mute">The NutrAid app keeps your symptoms, food, weight and readings in one place, sends your individual guidelines and reminders, and asks how your week went. You choose how you eat. Your care team guides you. <b style="color:#fff">Coming soon.</b> This is a preview. All names, dates and figures are examples.</p></div>
   <div class="phone">
     <div class="ptop"><div><b style="font-family:var(--fh);font-weight:600;font-size:1.2rem">Hello, Sara</b> <span class="tag warn">Example</span><div class="mute" style="font-size:.9rem">Your care team: Dr. Example Name and Dt. Example Name</div></div><button class="btn ghost sm" id="signbtn">Sign out (preview)</button></div>
     <div class="ptabs" role="tablist" id="ptabs">
-      <button role="tab" aria-selected="true" data-p="plan">My plan</button><button role="tab" aria-selected="false" data-p="appt">Appointments</button><button role="tab" aria-selected="false" data-p="rep">My reports</button><button role="tab" aria-selected="false" data-p="msg">Messages</button>
+      <button role="tab" aria-selected="true" data-p="today">Today</button><button role="tab" aria-selected="false" data-p="eat">My guidance</button><button role="tab" aria-selected="false" data-p="meds">Medicines</button><button role="tab" aria-selected="false" data-p="rec">My records</button><button role="tab" aria-selected="false" data-p="team">Care team</button>
     </div>
     <div class="pbody" id="pbody"></div>
   </div>
@@ -554,7 +584,7 @@ const AREAS=[
  {g:'Condition',n:'Lungs and critical illness',who:'Chronic lung conditions and recovery after serious illness.',look:'Energy and protein needs, appetite, breathing effort and recovery goals.'},
  {g:'Condition',n:'Cancer care',who:'Before, during and after cancer treatment.',look:'Appetite, taste changes, weight, side effects and keeping strength up.'},
  {g:'Condition',n:'Brain and mental health',who:'Neurological conditions, low mood, anxiety and eating difficulties.',look:'Eating routines, medicines, energy, mood and what feels manageable.'},
- {g:'Condition',n:'Wound healing',who:'Pressure injuries, surgery recovery and slow-healing wounds.',look:'Protein, energy, vitamins and minerals, hydration and recovery plan.'},
+ {g:'Condition',n:'Wound healing',who:'Pressure injuries, surgery recovery and slow-healing wounds.',look:'Protein, energy, vitamins and minerals, hydration and recovery.'},
  {g:'Condition',n:'Mouth and dental health',who:'Dental treatment, gum disease, jaw surgery and chewing difficulty.',look:'Texture, food choices that protect teeth and nutrition during recovery.'},
  {g:'Special programme',n:'Tube and drip feeding',who:'People who are fed by tube or through a vein, and their families.',look:'Feed type and amount, tolerance, hydration and moving towards eating when possible.'},
  {g:'Special programme',n:'Fasting and Ramadan',who:'Anyone planning to fast, including with a health condition.',look:'Meal timing, fluids, medicines and when fasting is not advised.'},
@@ -638,29 +668,95 @@ $('#bookform').addEventListener('submit',async e=>{
   clearTimeout(to);btn.disabled=false;btn.textContent='Request a consultation';
 });
 $('#copy').onclick=async()=>{const t=$('#mail').textContent;try{await navigator.clipboard.writeText(t);$('#copy').textContent='Copied'}catch(e){const r=document.createRange();r.selectNodeContents($('#mail'));const s=getSelection();s.removeAllRanges();s.addRange(r);$('#copy').textContent='Press copy keys'}setTimeout(()=>$('#copy').textContent='Copy',2000)};
-/* patient area */
+/* patient area (preview: everything is held in memory, nothing is saved or sent) */
+const PS={done:{},pat:'med',mood:'',life:'',meds:{},rem:true,diary:[{k:'Food',t:'Yesterday 13:10',x:'Lentil soup, salad, one flatbread. Felt full and comfortable. (Example)'},{k:'Symptom',t:'Yesterday 17:30',x:'Mild headache after skipping lunch. (Example)'}],dk:'Food',rec:'diary',
+ wt:[82.0,81.6,81.9,81.0,80.8,80.9,80.2,80.5],glu:[[6.2,'Fasting'],[8.9,'After meal'],[6.8,'Fasting'],[7.4,'Before meal'],[9.6,'After meal'],[6.1,'Fasting'],[7.9,'Bedtime'],[6.5,'Fasting']],gctx:'Fasting',wk:{},wkSent:false,notif:{dose:true,week:true,glu:true,appt:true,guide:true},chan:'App'};
+const GR={lo:4.4,hi:7.8};
+const TODAY=[['m1','8:00','Morning medicine','With breakfast'],['b','8:30','Breakfast','Your choice, from your pattern'],['w','All day','Drink water','About 2 litres'],['wk','Afternoon','20-minute walk','Any pace that suits you'],['m2','20:00','Evening medicine','After dinner']];
+const tkb=(id,l,sub,right)=>`<button class="tkrow" data-act="done" data-id="${id}" aria-pressed="${!!PS.done[id]}"><span class="tkbox" aria-hidden="true"></span><span><b>${l}</b><span class="mute"> ${sub}</span></span><span class="mute tr">${right}</span></button>`;
 const P={
- plan:()=>`<div><span class="tag warn">Example plan</span> <span class="mute" style="font-size:.9rem">Version 2 · published by your dietitian</span></div>
-  <div class="two" style="margin:0"><div class="box rv"><h3>Your daily targets</h3><div class="scroll"><table><tr><th>Target<th>Amount</tr><tr><td>Energy<td>1,500 kcal</tr><tr><td>Protein<td>74 g</tr><tr><td>Fibre<td>28 g</tr><tr><td>Fluid<td>2.5 L</tr></table></div></div>
-  <div class="box rv"><h3>Your goals</h3><ul class="checklist"><li>Eat iron-rich food at least 3 times a day</li><li>Drink about 2 litres of water daily</li><li>Bring new test results to your next visit</li></ul></div></div>
-  <div class="box rv"><h3>Today’s meals</h3><div class="scroll"><table><tr><th>Meal<th>Example</tr><tr><td>Breakfast<td>Eggs, wholegrain toast, tomato</tr><tr><td>Lunch<td>Lentil soup, salad, one flatbread</tr><tr><td>Snack<td>Yoghurt and a handful of dates</tr><tr><td>Dinner<td>Grilled chicken, vegetables, rice</tr></table></div></div>`,
- appt:()=>`<div class="box rv"><h3>Next appointment</h3><p><b>Follow-up consultation</b> · Thursday, 10:00 · Online</p><div class="copy"><button class="btn sm" disabled>Join (opens at appointment time)</button><button class="btn ghost sm" disabled>Ask to reschedule</button></div></div>
-  <div class="box rv"><h3>Past appointments</h3><div class="scroll"><table><tr><th>Date<th>Type<th>Status</tr><tr><td>Last month<td>Initial consultation<td>Completed</tr></table></div></div>`,
- rep:()=>`<div class="drop"><b>Add a lab report or body-composition report</b><span class="mute">PDF or photo, up to 12 MB</span><input type="file" id="rfile" accept=".pdf,.jpg,.jpeg,.png" style="max-width:320px"><div id="rname" class="mute" style="font-size:.9rem"></div></div>
-  <div class="note rv">Your dietitian checks every report before anything is added to your record. Nothing is changed automatically.</div>
-  <div class="box rv"><h3>Reports on file</h3><div class="scroll"><table><tr><th>File<th>Type<th>Status</tr><tr><td>blood-test-example.pdf<td>Lab report<td><span class="tag">Reviewed by dietitian</span></tr></table></div></div>`,
- msg:()=>`<div class="box" style="gap:10px"><div class="msg">Hello Sara, your latest results are in. Let’s go through them on Thursday. (Example)</div><div class="msg me">Thank you! Is it okay to keep the same breakfast until then? (Example)</div><div class="msg">Yes, keep it, and add a piece of fruit. (Example)</div></div>
-  <div class="copy"><input id="mtext" placeholder="Write a message to your dietitian" aria-label="Message" style="flex:1;min-width:0"><button class="btn sm" id="msend">Send</button></div><div class="mute" id="mnote" style="font-size:.88rem">Preview only: messages are not sent. Not for emergencies.</div>`
+ today:()=>{const n=TODAY.filter(t=>PS.done[t[0]]).length,pc=Math.round(n/TODAY.length*100);
+  return `<div class="box"><div class="hd2"><div><span class="tag warn">Example</span><h3 style="margin-top:6px">Today’s care</h3><div class="mute">Small steps that add up. Tap to tick them off.</div></div><div class="big">${n}<span class="mute">/${TODAY.length}</span></div></div><div class="bar"><i style="width:${pc}%"></i></div>
+   <div class="tklist">${TODAY.map(t=>tkb(t[0],t[2],t[3],t[1])).join('')}</div></div>
+  <div class="box wkcard"><div><b>Your weekly update is due Sunday</b><div class="mute" style="font-size:.95rem">A one-minute check on how your week went.</div></div><button class="btn sm" data-act="gowk">Start now</button></div>
+  <div class="box"><h3>How are you feeling today?</h3><div class="chips" data-grp="mood">${['Great','Okay','Not great','Unwell'].map(x=>`<button class="chip" data-act="mood" data-v="${x}" aria-pressed="${PS.mood===x}">${x}</button>`).join('')}</div>
+   <div class="mute" style="font-size:.95rem">${PS.mood==='Unwell'?'We are sorry to hear that. Your care team is told and will check in. If you feel very unwell, contact your local emergency services.':PS.mood==='Not great'?'Thank you for telling us. We will look at this at your next check-in, and you can message us any time.':PS.mood?'Good to hear. Keep going.':'Takes five seconds. Your care team sees how your weeks are going.'}</div></div>
+  <div class="box"><h3>Is your week different?</h3><p class="mute">Tell us, and your team adjusts your guidance with you.</p><div class="chips">${['Travelling','Fasting','Busy week','Unwell day','Family event'].map(x=>`<button class="chip" data-act="life" data-v="${x}" aria-pressed="${PS.life===x}">${x}</button>`).join('')}</div>${PS.life?`<div class="mute" style="font-size:.95rem">Preview: your team would be told “${esc(PS.life)}” and suggest what to adjust.</div>`:''}</div>`},
+ eat:()=>{const cur=PAT.find(x=>x[0]===PS.pat);
+  return `<div class="box"><h3>Your way of eating</h3><p class="mute">You decide the pattern. Your care team checks it against your health and medicines, and helps you make it work in real life.</p>
+   <div class="optgrid">${PAT.map(x=>`<button class="opt" data-act="pat" data-v="${x[0]}" aria-pressed="${PS.pat===x[0]}"><b>${x[1]}</b><span class="mute">${x[2]}</span></button>`).join('')}</div></div>
+  <div class="box"><span class="tag">Your choice</span><h3>${cur[1]}</h3><p class="mute">Your dietitian will go through this choice with you at your next visit, tell you what suits your results, and what to adjust. Nothing is ruled out without a reason you understand.</p></div>
+  <div class="box"><div class="hd2"><div><span class="tag warn">Example</span><h3 style="margin-top:6px">Guidelines written for you</h3><div class="mute">Not a leaflet for everyone. Written by your care team for your condition, results and routine. Only what really matters. Everything else is your decision.</div></div><span class="tag">New</span></div>
+   <div class="gl"><b>Fluids</b><span class="mute">Keep to about 2 litres a day unless we tell you otherwise.</span></div><div class="gl"><b>Iron</b><span class="mute">Take it with a vitamin-C food, not with tea or coffee.</span></div><div class="gl"><b>Supplements</b><span class="mute">Tell us before you start any new one.</span></div>
+   <div class="mute" style="font-size:.88rem">Updated by Dt. Example Name · 3 days ago · you are notified when your guidelines change.</div></div>
+  <div class="box"><h3>Something you want to ask about?</h3><div class="copy"><input id="ask" placeholder="For example: can I keep my morning coffee?" aria-label="Question about food" style="flex:1;min-width:0"><button class="btn sm" id="askbtn">Ask my dietitian</button></div><div class="mute" id="asknote" style="font-size:.88rem">Preview only: questions are not sent.</div></div>`},
+ meds:()=>{const L=[['i1','Ferrous sulfate 200 mg','Morning, with orange juice'],['i2','Vitamin D 1000 IU','With your largest meal'],['i3','Metformin 500 mg','Evening, after dinner']];
+  return `<div class="box"><div class="hd2"><div><span class="tag warn">Example</span><h3 style="margin-top:6px">Your medicines</h3><div class="mute">Prescribed by your doctor. Tap when you have taken one.</div></div><label class="sw2"><input type="checkbox" id="remtog" ${PS.rem?'checked':''}><span>Reminders</span></label></div>
+   <div class="tklist">${L.map(m=>`<button class="tkrow" data-act="med" data-id="${m[0]}" aria-pressed="${!!PS.meds[m[0]]}"><span class="tkbox" aria-hidden="true"></span><span><b>${m[1]}</b><span class="mute"> ${m[2]}</span></span></button>`).join('')}</div>
+   <div class="mute" style="font-size:.9rem">${PS.rem?'Reminders on: a message at each dose time (preview).':'Reminders are off. You can turn them back on any time.'}</div></div>
+  <div class="two" style="margin:0"><div class="box"><h3>Running low?</h3><p class="mute">Ask for a refill. Your doctor reviews it.</p><div><button class="btn sm" id="refill">Request a refill</button></div><div class="mute" id="refnote" style="font-size:.88rem">Preview only: nothing is sent.</div></div>
+   <div class="box"><h3>Side effect or worry?</h3><p class="mute">Tell your doctor early. You do not have to wait for your visit.</p><div><button class="btn ghost sm" data-go="book">Message your doctor</button></div></div></div>`},
+ rec:()=>{const chips=[['diary','Symptoms and food'],['weight','Weight'],['glucose','Glucose'],['week','Weekly update']];
+  return `<div class="chips" style="margin-bottom:4px">${chips.map(c=>`<button class="chip" data-act="rec" data-v="${c[0]}" aria-pressed="${PS.rec===c[0]}">${c[1]}</button>`).join('')}</div>`+({diary:recDiary,weight:recWeight,glucose:recGlucose,week:recWeek}[PS.rec])()},
+ team:()=>`<div class="box"><h3>Next appointment</h3><p><b>Follow-up consultation</b> · Thursday, 10:00 · Online</p><div class="copy"><button class="btn sm" disabled>Join (opens at appointment time)</button><button class="btn ghost sm" disabled>Ask to reschedule</button></div></div>
+  <div class="box" style="gap:10px"><h3>Messages</h3><div class="msg">Hello Sara, your latest results are in. Let’s go through them on Thursday. (Example)</div><div class="msg me">Thank you! Is it okay to keep the same breakfast until then? (Example)</div><div class="msg">Yes, keep it, and add a piece of fruit. (Example)</div>
+   <div class="copy"><input id="mtext" placeholder="Write a message to your care team" aria-label="Message" style="flex:1;min-width:0"><button class="btn sm" id="msend">Send</button></div><div class="mute" id="mnote" style="font-size:.88rem">Preview only: messages are not sent. Not for emergencies.</div></div>
+  <div class="drop"><b>Add a lab report or body-composition report</b><span class="mute">PDF or photo, up to 12 MB</span><input type="file" id="rfile" accept=".pdf,.jpg,.jpeg,.png" style="max-width:320px"><div id="rname" class="mute" style="font-size:.9rem"></div></div>
+  <div class="note">Your care team checks every report before anything is added to your record. Nothing is changed automatically.</div>
+  <div class="box"><h3>Family and carers</h3><p class="mute">Invite a family member or carer to see your goals and reminders, if you want. You choose what they see.</p><div><button class="btn ghost sm" id="famb">Invite someone</button></div><div class="mute" id="famn" style="font-size:.88rem">Preview only: nothing is sent.</div></div>
+  <div class="box"><h3>Reminders and updates</h3><p class="mute">Choose what the app tells you, and how.</p>${[['dose','Medicine times'],['week','Weekly symptom update (Sundays)'],['glu','Glucose checks (diabetes)'],['appt','Appointments'],['guide','When your guidelines change']].map(n=>`<label class="sw2 nrow"><input type="checkbox" data-n="${n[0]}" ${PS.notif[n[0]]?'checked':''}><span>${n[1]}</span></label>`).join('')}
+   <div class="chips" style="margin-top:6px">${['App','WhatsApp','Email'].map(x=>`<button class="chip" data-act="chan" data-v="${x}" aria-pressed="${PS.chan===x}">${x}</button>`).join('')}</div><div class="mute" style="font-size:.88rem">Preview only: nothing is sent. Reminders by ${PS.chan.toLowerCase()}.</div></div>`
 };
-function portal(k){
-  $$('#ptabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.p===k));
-  $('#pbody').innerHTML=P[k]();
-  const f=$('#rfile');if(f)f.onchange=()=>{$('#rname').textContent=f.files[0]?'Selected: '+f.files[0].name+' (preview: not uploaded)':''};
-  const s=$('#msend');if(s)s.onclick=()=>{$('#mnote').textContent=$('#mtext').value.trim()?'Preview only: your message was not sent.':'Write a message first.'};
+
+const fx=(v,min,max,W,pad)=>pad+(v-min)/(max-min||1)*(W-2*pad);
+function recDiary(){return `<div class="box"><h3>Symptoms and food</h3><p class="mute">Write down what you ate or how you felt, in your own words. Your team reads it before your visit, so appointments start from the real picture.</p>
+   <div class="chips">${['Food','Symptom','Sleep','Energy'].map(x=>`<button class="chip" data-act="dk" data-v="${x}" aria-pressed="${PS.dk===x}">${x}</button>`).join('')}</div>
+   <div class="copy"><input id="dtext" placeholder="Write a short note" aria-label="Diary note" style="flex:1;min-width:0"><button class="btn sm" id="dadd">Add</button></div></div>
+  <div class="box"><h3>Recent entries</h3><div class="entries">${PS.diary.map(d=>`<div class="entry"><span class="tag">${d.k}</span><div><div>${esc(d.x)}</div><div class="mute" style="font-size:.85rem">${esc(d.t)}</div></div></div>`).join('')}</div><div class="mute" style="font-size:.88rem">Preview only: entries are not saved.</div></div>`}
+function recWeight(){const w=PS.wt,W=640,H=220,p=34,min=Math.floor(Math.min(...w,78)-1),max=Math.ceil(Math.max(...w)+1),X=i=>p+i/(Math.max(w.length-1,1))*(W-2*p),Y=v=>H-p-(v-min)/(max-min)*(H-2*p);
+  const pts=w.map((v,i)=>X(i)+','+Y(v)).join(' '),gy=Y(78);
+  return `<div class="box"><span class="tag warn">Example</span><h3 style="margin-top:6px">Weight trajectory</h3><div class="mute">The direction matters more than any single day. Your team looks at the trend with you.</div>
+   <svg viewBox="0 0 ${W} ${H}" class="chart" role="img" aria-label="Weight over the last ${w.length} weeks"><line x1="${p}" x2="${W-p}" y1="${gy}" y2="${gy}" stroke="var(--green)" stroke-dasharray="6 5"/><text x="${W-p}" y="${gy-6}" text-anchor="end" fill="var(--green)" font-size="12">Your goal 78 kg</text>
+   <polyline points="${pts}" fill="none" stroke="var(--navy)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>${w.map((v,i)=>`<circle cx="${X(i)}" cy="${Y(v)}" r="4.5" fill="var(--surface)" stroke="var(--navy)" stroke-width="2.5"/>`).join('')}
+   <text x="${p}" y="${H-8}" fill="var(--mute)" font-size="12">Week 1</text><text x="${W-p}" y="${H-8}" text-anchor="end" fill="var(--mute)" font-size="12">Week ${w.length}</text></svg>
+   <div class="stats"><div><b>${w[0]} kg</b><span class="mute">Start</span></div><div><b>${w[w.length-1]} kg</b><span class="mute">Now</span></div><div><b>${(w[w.length-1]-w[0]).toFixed(1)} kg</b><span class="mute">Change</span></div></div>
+   <div class="copy"><input id="wnum" type="number" step="0.1" min="20" max="400" placeholder="Today’s weight (kg)" aria-label="Weight in kilograms" style="max-width:220px"><button class="btn sm" id="wadd">Add weight</button></div></div>`}
+function recGlucose(){const g=PS.glu,W=640,H=230,p=34,min=3,max=Math.max(12,Math.ceil(Math.max(...g.map(x=>x[0]))+1)),X=i=>p+i/(Math.max(g.length-1,1))*(W-2*p),Y=v=>H-p-(v-min)/(max-min)*(H-2*p);
+  const st=v=>v<GR.lo?['wn','Below your range']:v>GR.hi?['wn','Above your range']:['ok','In your range'];
+  return `<div class="box"><div class="hd2"><div><span class="tag warn">Example</span><h3 style="margin-top:6px">Glucose log</h3><div class="mute">Shown to patients with diabetes. Your doctor sets your range.</div></div></div>
+   <svg viewBox="0 0 ${W} ${H}" class="chart" role="img" aria-label="Glucose readings"><rect x="${p}" y="${Y(GR.hi)}" width="${W-2*p}" height="${Y(GR.lo)-Y(GR.hi)}" fill="var(--green-bg)"/><text x="${W-p}" y="${H-8}" text-anchor="end" fill="var(--green)" font-size="12">Your range ${GR.lo}–${GR.hi} mmol/L (example)</text>
+   <polyline points="${g.map((x,i)=>X(i)+','+Y(x[0])).join(' ')}" fill="none" stroke="var(--navy)" stroke-width="2.5" stroke-linejoin="round"/>${g.map((x,i)=>`<circle cx="${X(i)}" cy="${Y(x[0])}" r="4.5" fill="${x[0]<GR.lo||x[0]>GR.hi?'var(--red)':'var(--green)'}"/>`).join('')}</svg>
+   <div class="copy"><input id="gnum" type="number" step="0.1" min="1" max="40" placeholder="Reading (mmol/L)" aria-label="Glucose reading" style="max-width:200px"><select id="gctx" aria-label="When" style="max-width:180px">${['Fasting','Before meal','After meal','Bedtime'].map(x=>`<option ${PS.gctx===x?'selected':''}>${x}</option>`).join('')}</select><button class="btn sm" id="gadd">Add reading</button></div>
+   <div class="scroll"><table><tr><th>Reading<th>When<th>Result</tr>${g.slice(-5).reverse().map(x=>`<tr><td>${x[0].toFixed(1)}<td>${x[1]}<td><span class="tag ${st(x[0])[0]=='ok'?'':'warn'}">${st(x[0])[1]}</span></tr>`).join('')}</table></div>
+   <div class="note">If a reading is far outside your range, or you feel unwell, follow the emergency advice your doctor gave you. This app does not replace it.</div></div>`}
+function recWeek(){const Q=['Tiredness','Appetite','Stomach or digestion','Pain','Sleep'],L=['None','Mild','Moderate','Severe'];
+  return `<div class="box"><span class="tag warn">Example</span><h3 style="margin-top:6px">Your weekly update</h3><p class="mute">Once a week, on the day you choose, the app asks how your week was. It takes a minute. Your team sees the pattern, not just your visit day.</p>
+   ${Q.map(q=>`<div class="wq"><b>${q}</b><div class="chips">${L.map(l=>`<button class="chip" data-act="wk" data-q="${q}" data-v="${l}" aria-pressed="${PS.wk[q]===l}">${l}</button>`).join('')}</div></div>`).join('')}
+   <label for="wnote" style="margin-top:6px">Anything else this week?<textarea id="wnote" placeholder="Optional"></textarea></label>
+   <div class="copy"><button class="btn" id="wsend">Send weekly update</button></div><div class="mute" id="wmsg" style="font-size:.9rem">${PS.wkSent?'Preview only: your update was not sent. In the app, your care team would see it straight away.':'Reminder arrives every Sunday at 18:00 (you can change this).'}</div></div>`}
+let CUR='today';
+function portal(k){const sw=k&&k!==CUR;CUR=k||CUR;$('#pbody').classList.toggle('anim',!!sw||!window.__pa);window.__pa=1;
+  $$('#ptabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.p===CUR));
+  $('#pbody').innerHTML=P[CUR]();
+  const q=(i,f)=>{const e=$(i);if(e)f(e)};
+  q('#rfile',f=>f.onchange=()=>{$('#rname').textContent=f.files[0]?'Selected: '+f.files[0].name+' (preview: not uploaded)':''});
+  q('#msend',s=>s.onclick=()=>{$('#mnote').textContent=$('#mtext').value.trim()?'Preview only: your message was not sent.':'Write a message first.'});
+  q('#askbtn',s=>s.onclick=()=>{$('#asknote').textContent=$('#ask').value.trim()?'Preview only: your question was not sent.':'Write your question first.'});
+  q('#refill',s=>s.onclick=()=>{$('#refnote').textContent='Preview only: no request was sent.'});
+  q('#famb',s=>s.onclick=()=>{$('#famn').textContent='Preview only: no invitation was sent.'});
+  q('#remtog',c=>c.onchange=()=>{PS.rem=c.checked;portal()});
+  q('#wadd',s=>s.onclick=()=>{const v=parseFloat($('#wnum').value);if(v>=20&&v<=400){PS.wt.push(v);portal()}});
+  q('#gadd',s=>s.onclick=()=>{const v=parseFloat($('#gnum').value);PS.gctx=$('#gctx').value;if(v>=1&&v<=40){PS.glu.push([v,PS.gctx]);portal()}});
+  q('#wsend',s=>s.onclick=()=>{PS.wkSent=true;portal()});
+  $$('[data-n]').forEach(c=>c.onchange=()=>{PS.notif[c.dataset.n]=c.checked});
+  q('#dadd',s=>s.onclick=()=>{const t=$('#dtext').value.trim();if(!t)return;PS.diary.unshift({k:PS.dk,t:'Just now',x:t});portal()});
 }
+$('#pbody').addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b)return;const a=b.dataset.act,v=b.dataset.v,id=b.dataset.id;
+  if(a==='done')PS.done[id]=!PS.done[id];else if(a==='med')PS.meds[id]=!PS.meds[id];else if(a==='mood')PS.mood=PS.mood===v?'':v;else if(a==='life')PS.life=PS.life===v?'':v;else if(a==='pat')PS.pat=v;else if(a==='rec'){PS.rec=v}else if(a==='wk'){PS.wk[b.dataset.q]=v}else if(a==='chan'){PS.chan=v}else if(a==='gowk'){PS.rec='week';portal('rec');return}else if(a==='dk'){const t=$('#dtext');const keep=t?t.value:'';PS.dk=v;portal();const t2=$('#dtext');if(t2)t2.value=keep;return}
+  portal()});
 $('#ptabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)portal(b.dataset.p)});
 $('#signbtn').onclick=()=>go('home');
-finder();grid();portal('plan');
+finder();grid();portal('today');
 go((location.hash||'').slice(1)||'home',false);
 
 /* ---- premium layer ---- */
