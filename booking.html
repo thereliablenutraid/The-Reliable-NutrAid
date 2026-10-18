@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Book a consultation | The Reliable NutrAid</title>
+<style>
+:root{--bg:#0e1230;--card:#161b42;--line:#2a3070;--ink:#eef0ff;--mute:#a9aed6;--accent:#a9b2ff;--accent-ink:#0e1230;--warn:#3a2e12;--ok:#6fe0a0}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:40px 16px 80px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px}
+@media(max-width:860px){.wrap{grid-template-columns:1fr}}
+h1{font:600 34px/1.2 Georgia,serif;margin:0 0 8px}
+.lead{color:var(--mute);margin:0 0 24px;grid-column:1/-1}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px}
+.side .card{margin-bottom:16px}
+h2{font:600 22px Georgia,serif;margin:0 0 10px}
+label{display:block;font-weight:600;margin:16px 0 6px}
+label small{font-weight:400;color:var(--mute)}
+input,select,textarea{width:100%;background:#0c1030;color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font:inherit}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
+textarea{min-height:90px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.row{grid-template-columns:1fr}}
+.block{display:none;margin-top:22px;padding:18px;border:1px dashed var(--line);border-radius:16px;background:#12163a}
+.block.on{display:block}
+.block h3{margin:0 0 4px;font-size:18px;color:var(--accent)}
+.note{color:var(--mute);font-size:14px;margin:14px 0}
+.check{display:flex;gap:10px;align-items:flex-start;margin:14px 0}
+.check input{width:20px;height:20px;margin-top:3px}
+.check label{margin:0;font-weight:400}
+button{width:100%;padding:16px;border:0;border-radius:999px;background:var(--accent);color:var(--accent-ink);font:600 18px inherit;cursor:pointer}
+button:hover{filter:brightness(1.08)}
+.warn{background:var(--warn);border:1px solid #6b531b;border-radius:14px;padding:16px}
+ul.steps{list-style:none;padding:0;margin:0}
+ul.steps li{padding-left:28px;position:relative;margin:10px 0}
+ul.steps li:before{content:"✓";position:absolute;left:0;color:var(--ok)}
+.mail{font-family:ui-monospace,Menlo,monospace;background:#0c1030;padding:8px 12px;border-radius:8px;display:inline-block;margin:6px 0}
+.msg{display:none;margin-top:14px;padding:14px;border-radius:12px;background:#12361f;border:1px solid #2f7a4a}
+.err{display:none;margin-top:12px;color:#ffb4b4}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="lead">
+    <h1>Book a consultation</h1>
+    <p style="margin:0">Choose what you need and answer a few short questions. We use this to match you with the right doctor or dietitian. It takes about two minutes.</p>
+  </div>
+
+  <form id="f" class="card" novalidate>
+    <label for="type">Which consultation would you like?</label>
+    <select id="type" name="type">
+      <option value="">Not sure, help me choose</option>
+      <option value="sports">Sports and fitness nutrition</option>
+      <option value="adult">General adult nutrition</option>
+      <option value="child">Child and adolescent nutrition</option>
+      <option value="pregnancy">Pregnancy and breastfeeding</option>
+      <option value="diabetes">Diabetes and hormones</option>
+      <option value="kidney">Kidney health</option>
+      <option value="heart">Heart and cholesterol</option>
+      <option value="weight">Weight management</option>
+      <option value="gut">Digestive and gut health</option>
+    </select>
+
+    <div class="row">
+      <div><label for="name">Full name</label><input id="name" name="name" autocomplete="name" placeholder="Your full name"></div>
+      <div><label for="who">Who is the consultation for?</label>
+        <select id="who" name="who"><option value="self">Myself (adult)</option><option value="other">Someone else</option></select></div>
+    </div>
+
+    <div class="block" id="other" style="margin-top:16px">
+      <h3>About the patient</h3>
+      <p class="note" style="margin-top:0">The name above is yours. Please tell us who the patient is. The details below under "Your details" are the patient's.</p>
+      <div class="row">
+        <div><label for="pname">Patient's full name</label><input id="pname" name="patient_name"></div>
+        <div><label for="rel">Who is the patient to you?</label>
+          <select id="rel" name="relationship"><option value="">Select</option><option>My child</option><option>My spouse or partner</option><option>My mother</option><option>My father</option><option>My brother or sister</option><option>Another relative</option><option>Someone I care for</option><option>A friend</option><option>Other</option></select></div>
+      </div>
+      <div id="relother" style="display:none"><label for="relo">Please tell us how you are related</label><input id="relo" name="relationship_other"></div>
+    </div>
+
+    <div class="block on" id="reg" style="display:block">
+      <h3>Your details</h3>
+      <div class="row">
+        <div><label for="dob">Date of birth</label><input type="date" id="dob" name="dob"></div>
+        <div><label for="sex">Sex</label><select id="sex" name="sex"><option value="">Select</option><option>Female</option><option>Male</option><option>Other</option><option>Prefer not to say</option></select></div>
+      </div>
+      <div class="row">
+        <div><label for="country">Country</label><input id="country" name="country" autocomplete="country-name"></div>
+        <div><label for="city">City</label><input id="city" name="city" autocomplete="address-level2"></div>
+      </div>
+      <div class="row">
+        <div><label for="nat">Nationality <small>(optional)</small></label><input id="nat" name="nationality"></div>
+        <div><label for="lang">Language for your care</label><select id="lang" name="language"><option>English</option><option>Arabic</option><option>Urdu</option><option>Hindi</option><option>Other</option></select></div>
+      </div>
+      <div class="row">
+        <div><label for="ht">Height (cm) <small>(optional)</small></label><input type="number" id="ht" name="height_cm" min="30" max="250"></div>
+        <div><label for="wt">Weight (kg) <small>(optional)</small></label><input type="number" id="wt" name="weight_kg" min="2" max="300" step="0.1"></div>
+      </div>
+      <div class="row">
+        <div><label for="occ">Occupation <small>(optional)</small></label><input id="occ" name="occupation"></div>
+        <div><label for="ref">Referred by a doctor? <small>(optional)</small></label><input id="ref" name="referred_by" placeholder="Doctor or clinic name"></div>
+      </div>
+      <div class="row">
+        <div><label for="ecn">Emergency contact name <small>(optional)</small></label><input id="ecn" name="emergency_name"></div>
+        <div><label for="ecp">Emergency contact phone <small>(optional)</small></label><input type="tel" id="ecp" name="emergency_phone"></div>
+      </div>
+      <label for="alg">Food allergies or intolerances <small>(optional)</small></label>
+      <input id="alg" name="allergies" placeholder="e.g. nuts, lactose, none">
+    </div>
+
+    <!-- SPORTS -->
+    <div class="block" data-for="sports">
+      <h3>About your sport</h3>
+      <div class="row">
+        <div><label>Sport or activity</label><input name="sport" placeholder="e.g. football, running, gym, cricket"></div>
+        <div><label>Level</label><select name="level"><option value="">Select</option><option>Recreational</option><option>Club or school team</option><option>Competitive or national</option><option>Professional</option></select></div>
+      </div>
+      <div class="row">
+        <div><label>Training days per week</label><select name="days"><option value="">Select</option><option>1–2</option><option>3–4</option><option>5–6</option><option>Every day</option></select></div>
+        <div><label>Hours per session</label><select name="hours"><option value="">Select</option><option>Under 1</option><option>1–2</option><option>2–3</option><option>More than 3</option></select></div>
+      </div>
+      <div class="row">
+        <div><label>Where are you in your season?</label><select name="phase"><option value="">Select</option><option>Off-season</option><option>Pre-season</option><option>In-season</option><option>Preparing for an event</option><option>Returning from injury</option></select></div>
+        <div><label>Next competition <small>(optional)</small></label><input type="date" name="event"></div>
+      </div>
+      <label>Main goal</label>
+      <select name="goal"><option value="">Select</option><option>Better performance</option><option>Build muscle</option><option>Lose fat, keep strength</option><option>Make a weight class</option><option>Faster recovery</option><option>More energy during training</option><option>Fuel for a long event</option></select>
+      <label>Supplements you use now <small>(optional)</small></label>
+      <input name="supps" placeholder="e.g. protein powder, creatine, caffeine, none">
+      <label>Injuries or limits <small>(optional)</small></label>
+      <input name="injury" placeholder="e.g. knee pain, stress fracture, none">
+    </div>
+
+    <!-- CHILD -->
+    <div class="block" data-for="child">
+      <h3>About your child</h3>
+      <div class="row">
+        <div><label>Child's age</label><input name="childage" placeholder="e.g. 4 years"></div>
+        <div><label>Main concern</label><select name="childconcern"><option value="">Select</option><option>Fussy or picky eating</option><option>Low weight or slow growth</option><option>Overweight</option><option>Allergies or intolerances</option><option>Constipation or tummy trouble</option><option>Sports or teen nutrition</option><option>Other</option></select></div>
+      </div>
+      <label>Parent or guardian name</label><input name="guardian">
+    </div>
+
+    <!-- PREGNANCY -->
+    <div class="block" data-for="pregnancy">
+      <h3>About your stage</h3>
+      <div class="row">
+        <div><label>Stage</label><select name="stage"><option value="">Select</option><option>Planning pregnancy</option><option>First trimester</option><option>Second trimester</option><option>Third trimester</option><option>Breastfeeding</option></select></div>
+        <div><label>Main concern</label><select name="pregconcern"><option value="">Select</option><option>Nausea or poor appetite</option><option>Weight gain</option><option>Gestational diabetes</option><option>Anaemia</option><option>Low milk supply</option><option>General healthy eating</option></select></div>
+      </div>
+    </div>
+
+    <!-- DIABETES -->
+    <div class="block" data-for="diabetes">
+      <h3>About your condition</h3>
+      <div class="row">
+        <div><label>Type</label><select name="dtype"><option value="">Select</option><option>Type 1</option><option>Type 2</option><option>Prediabetes</option><option>Gestational</option><option>Thyroid or PCOS</option><option>Not sure</option></select></div>
+        <div><label>Treatment</label><select name="dtreat"><option value="">Select</option><option>Diet only</option><option>Tablets</option><option>Insulin</option><option>Not sure</option></select></div>
+      </div>
+    </div>
+
+    <!-- KIDNEY -->
+    <div class="block" data-for="kidney">
+      <h3>About your kidney health</h3>
+      <div class="row">
+        <div><label>Stage, if you know it</label><select name="kstage"><option value="">Not sure</option><option>Stage 1–2</option><option>Stage 3</option><option>Stage 4</option><option>Stage 5</option><option>Dialysis</option><option>Kidney transplant</option></select></div>
+        <div><label>Under a kidney doctor?</label><select name="kdoc"><option>Yes</option><option>No</option></select></div>
+      </div>
+    </div>
+
+    <!-- HEART -->
+    <div class="block" data-for="heart">
+      <h3>About your heart health</h3>
+      <label>Main concern</label>
+      <select name="hconcern"><option value="">Select</option><option>High cholesterol</option><option>High blood pressure</option><option>After a heart event</option><option>Family history</option><option>Prevention</option></select>
+    </div>
+
+    <!-- WEIGHT -->
+    <div class="block" data-for="weight">
+      <h3>About your goal</h3>
+      <div class="row">
+        <div><label>Goal</label><select name="wgoal"><option value="">Select</option><option>Lose weight</option><option>Gain weight</option><option>Keep weight steady</option><option>Change eating habits</option></select></div>
+        <div><label>Tried before?</label><select name="wtried"><option>No</option><option>Yes, diets</option><option>Yes, with a professional</option></select></div>
+      </div>
+    </div>
+
+    <!-- GUT -->
+    <div class="block" data-for="gut">
+      <h3>About your digestion</h3>
+      <div class="row">
+        <div><label>Main trouble</label><select name="gsym"><option value="">Select</option><option>Bloating or gas</option><option>Constipation</option><option>Diarrhoea</option><option>Reflux or heartburn</option><option>IBS or IBD</option><option>Food reactions</option></select></div>
+        <div><label>For how long?</label><select name="gdur"><option value="">Select</option><option>Under a month</option><option>1–6 months</option><option>Over 6 months</option></select></div>
+      </div>
+    </div>
+
+    <label for="notes">Anything else we should know? <small>(optional)</small></label>
+    <textarea id="notes" name="notes" placeholder="For example: a goal, allergies"></textarea>
+
+    <div class="row">
+      <div><label for="phone">Phone / WhatsApp number</label><input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+971 ..."></div>
+      <div><label for="email">Email</label><input type="email" id="email" name="email" autocomplete="email"></div>
+    </div>
+    <label for="via">Best way to reach you</label>
+    <select id="via" name="via"><option>WhatsApp</option><option>Phone call</option><option>Email</option></select>
+    <p class="note" style="margin-top:6px">Add at least one: phone or email. Adding both helps us reach you.</p>
+    <label for="time">Preferred time</label>
+    <select id="time" name="time"><option>Morning</option><option>Afternoon</option><option>Evening</option></select>
+
+    <p class="note">Please do not enter detailed medical information here. Your doctor or dietitian will ask for it in your consultation.</p>
+    <div class="check"><input type="checkbox" id="ok"><label for="ok">I agree that The Reliable NutrAid may contact me about this request.</label></div>
+    <button type="submit">Request a consultation</button>
+    <p class="err" id="err"></p>
+    <div class="msg" id="done">Thank you. Your request has been sent. Our team will contact you to confirm a time.</div>
+  </form>
+
+  <aside class="side">
+    <div class="card">
+      <h2>Prefer to write to us?</h2>
+      <p style="color:var(--mute);margin:0">Email us to book or ask a question.</p>
+      <span class="mail">thereliablenutraid.info@trnorg.com</span>
+    </div>
+    <div class="card">
+      <h2>What happens next</h2>
+      <ul class="steps"><li>Our team reads your request</li><li>We match you with a doctor, dietitian or both</li><li>We contact you to confirm a time</li></ul>
+    </div>
+    <div class="warn"><b>Not for emergencies.</b> If you feel very unwell, contact your local emergency services.</div>
+  </aside>
+</div>
+
+<script>
+/* === SET THIS to your booking endpoint if you have one. Leave empty to send by email. === */
+var ENDPOINT = "";
+var EMAIL = "thereliablenutraid.info@trnorg.com";
+
+var f = document.getElementById("f"), typeSel = document.getElementById("type");
+var LABELS = {sports:"Sports and fitness nutrition",adult:"General adult nutrition",child:"Child and adolescent nutrition",pregnancy:"Pregnancy and breastfeeding",diabetes:"Diabetes and hormones",kidney:"Kidney health",heart:"Heart and cholesterol",weight:"Weight management",gut:"Digestive and gut health","":"Not sure, help me choose"};
+
+function show(){
+  var v = typeSel.value;
+  document.querySelectorAll(".block").forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-for")===v); });
+}
+typeSel.addEventListener("change", show);
+
+var whoSel = document.getElementById("who"), otherBox = document.getElementById("other"), relSel = document.getElementById("rel");
+function who(){
+  var other = whoSel.value === "other";
+  otherBox.style.display = other ? "block" : "none";
+  document.querySelector('label[for="name"]').textContent = other ? "Your full name" : "Full name";
+  document.getElementById("relother").style.display = (other && relSel.value === "Other") ? "block" : "none";
+}
+whoSel.addEventListener("change", who);
+relSel.addEventListener("change", who);
+who();
+/* Allow a link like booking.html#sports to open the right form */
+var h = (location.hash||"").replace("#","");
+if (LABELS.hasOwnProperty(h) && h) typeSel.value = h;
+show();
+
+f.addEventListener("submit", function(e){
+  e.preventDefault();
+  var err = document.getElementById("err"); err.style.display="none";
+  var name = f.name.value.trim(), phone = f.phone.value.trim(), email = f.email.value.trim();
+  if(!name){ err.textContent="Please enter your full name."; err.style.display="block"; f.name.focus(); return; }
+  if(whoSel.value==="other"){
+    if(!f.patient_name.value.trim()){ err.textContent="Please enter the patient's full name."; err.style.display="block"; f.patient_name.focus(); return; }
+    if(!f.relationship.value){ err.textContent="Please tell us who the patient is to you."; err.style.display="block"; f.relationship.focus(); return; }
+  }
+  if(!f.dob.value){ err.textContent="Please enter your date of birth."; err.style.display="block"; f.dob.focus(); return; }
+  if(!phone && !email){ err.textContent="Please enter a phone number or an email."; err.style.display="block"; f.phone.focus(); return; }
+  if(email && !/^\S+@\S+\.\S+$/.test(email)){ err.textContent="That email does not look right."; err.style.display="block"; f.email.focus(); return; }
+  if(!document.getElementById("ok").checked){ err.textContent="Please tick the agreement box so we can contact you."; err.style.display="block"; return; }
+
+  var data = {}, v = typeSel.value;
+  new FormData(f).forEach(function(val,k){ if(val!=="") data[k]=val; });
+  /* keep only the active block's answers */
+  if(whoSel.value!=="other"){ delete data.patient_name; delete data.relationship; delete data.relationship_other; }
+  document.querySelectorAll(".block:not(.on) [name]:not(#reg [name]):not(#other [name])").forEach(function(el){ delete data[el.name]; });
+  data.consultation = LABELS[v];
+
+  if(ENDPOINT){
+    fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)})
+      .then(function(r){ if(!r.ok) throw 0; document.getElementById("done").style.display="block"; f.reset(); show(); })
+      .catch(function(){ err.textContent="We could not send this. Please email "+EMAIL+" instead."; err.style.display="block"; });
+  } else {
+    var lines = Object.keys(data).map(function(k){ return k+": "+data[k]; }).join("\n");
+    location.href = "mailto:"+EMAIL+"?subject="+encodeURIComponent("Consultation request: "+LABELS[v])+"&body="+encodeURIComponent(lines);
+    document.getElementById("done").style.display="block";
+  }
+});
+</script>
+</body>
+</html>
