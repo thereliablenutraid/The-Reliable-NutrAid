@@ -653,38 +653,10 @@ footer .script{color:var(--mint)}
   <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:26px 28px;box-shadow:var(--shadow);max-width:880px;margin:0 auto 34px">
     <div style="flex:1;min-width:240px"><b style="font-family:var(--fh);font-size:1.35rem;font-weight:600">Already enrolled?</b><p class="mute" style="margin:6px 0 0">Sign in with the login the Academy sent you on WhatsApp. You will choose your own password the first time.</p></div>
     <a class="btn" href="https://crm.trnorg.com" target="_blank" rel="noopener">Student sign in</a></div>
-  <div class="formgrid">
-    <div>
-      <form class="book" id="stform" novalidate>
-        <div class="f2">
-          <label for="s-name">Full name, exactly as you want it on your certificate<input id="s-name" autocomplete="name" required maxlength="120"></label>
-          <label for="s-inst">Institution or university<input id="s-inst" maxlength="160"></label>
-        </div>
-        <div class="f2">
-          <label for="s-prog">Programme and year of study<input id="s-prog" maxlength="160"></label>
-          <label for="s-phone">WhatsApp number (with country code)<input id="s-phone" autocomplete="tel" required maxlength="40" placeholder="+971 50 123 4567"></label>
-        </div>
-        <div class="box" style="font-size:.95rem"><b>Student consent</b>
-          <p style="margin:10px 0 2px"><b>1. What this is</b></p><p class="mute" style="margin:0">You are in supervised training at The Reliable NutrAid Academy. Your mentor is a registered dietitian. You practise on case studies, which are fictional patients. Your mentor may also share real patients with you to read, and may allow you to take part in their care, under supervision.</p>
-          <p style="margin:10px 0 2px"><b>2. Patient privacy</b> I will:</p>
-          <ul class="checklist"><li>Keep every real patient's information private.</li><li>Not copy, photograph, screenshot, print or share it, including on social media.</li><li>Open only the patients my mentor has shared with me.</li></ul>
-          <p style="margin:10px 0 2px"><b>3. Supervised work</b></p><p class="mute" style="margin:0">I will give medical nutrition therapy to a real patient only when my mentor allows it and supervises. My mentor reviews and signs my work.</p>
-          <p style="margin:10px 0 2px"><b>4. My login and my details</b></p>
-          <ul class="checklist"><li>My login is personal. I will not share my password, I will change my first password, and I will tell my mentor if someone else used my login.</li><li>The Academy keeps my name, WhatsApp number, institution and my work in the Academy account, to run the training. It does not sell my data. I can ask to see, correct or delete it.</li></ul>
-          <p style="margin:10px 0 2px"><b>5. Rules and leaving</b></p><p class="mute" style="margin:0">If I break these rules, the Academy can remove my access. I can leave at any time by telling my mentor. My privacy duties continue after I leave.</p>
-        </div>
-        <div class="mute" style="font-size:.88rem">Please do not write a password here. Your login is created for you.</div>
-        <label class="ck" for="s-consent" style="display:flex;gap:10px;align-items:flex-start;font-weight:400"><input type="checkbox" id="s-consent" style="width:auto;margin-top:5px"><span>I have read and understood the student consent above and I agree to follow it. The details I gave are correct.</span></label>
-        <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="s-web">Leave this empty<input id="s-web" tabindex="-1" autocomplete="off"></label></div>
-        <button class="btn" type="submit" id="s-send">Submit enrolment form</button>
-        <div id="stmsg" role="status"></div>
-      </form>
-    </div>
-    <div class="side">
-      <div class="box rv"><h3>What happens next</h3><ul class="checklist"><li>The Academy team receives your form</li><li>We create your login and send it to you on WhatsApp</li><li>You sign in and choose your own password</li></ul></div>
-      <div class="note rv"><b>Questions?</b> Email thereliablenutraid.info@trnorg.com.</div>
-    </div>
-  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:26px 28px;box-shadow:var(--shadow);max-width:880px;margin:0 auto 34px">
+    <div style="flex:1;min-width:240px"><b style="font-family:var(--fh);font-size:1.35rem;font-weight:600">New student?</b><p class="mute" style="margin:6px 0 0">Fill in the short enrolment form (name, institution, programme, WhatsApp number) and read the student consent. We will create your login and send it to you on WhatsApp.</p></div>
+    <a class="btn" href="https://crm.trnorg.com/join" target="_blank" rel="noopener">Enrol as a student</a></div>
+  <p class="mute" style="text-align:center;max-width:880px;margin:0 auto">Questions? Email thereliablenutraid.info@trnorg.com.</p>
 </div></section>
 
 </main>
@@ -798,24 +770,6 @@ $('#bookform').addEventListener('submit',async e=>{
   clearTimeout(to);btn.disabled=false;btn.textContent='Request a consultation';
 });
 $('#copy').onclick=async()=>{const t=$('#mail').textContent;try{await navigator.clipboard.writeText(t);$('#copy').textContent='Copied'}catch(e){const r=document.createRange();r.selectNodeContents($('#mail'));const s=getSelection();s.removeAllRanges();s.addRange(r);$('#copy').textContent='Press copy keys'}setTimeout(()=>$('#copy').textContent='Copy',2000)};
-/* academy student enrolment */
-const ST_END='https://crm.trnorg.com/api/v1/public/student-applications',ST0=Date.now();
-$('#stform').addEventListener('submit',async e=>{
-  e.preventDefault();
-  const m=$('#stmsg'),btn=$('#s-send'),n=$('#s-name').value.trim(),ph=$('#s-phone').value.trim();
-  const warn=t=>m.innerHTML=`<div class="note" role="alert">${t}</div>`;
-  if(!n||!ph)return warn('Please add your full name and your WhatsApp number.');
-  if(!$('#s-consent').checked)return warn('Please tick the box to confirm you have read and agree to the student consent.');
-  if(!LIVE){m.innerHTML='<div class="confirm"><span class="tag">Preview</span><b>Thank you.</b><p class="mute">This is a preview: nothing was sent.</p></div>';return}
-  btn.disabled=true;btn.textContent='Sending…';warn('Sending your form. The first one can take up to a minute while our system wakes up.');
-  const ctl=new AbortController(),to=setTimeout(()=>ctl.abort(),90000);
-  try{
-    const r=await fetch(ST_END,{method:'POST',headers:{'Content-Type':'application/json'},signal:ctl.signal,body:JSON.stringify({name:n,institution:$('#s-inst').value,programme:$('#s-prog').value,phone:ph,consent:true,website:$('#s-web').value,ms:Date.now()-ST0})});
-    if(r.ok){m.innerHTML=`<div class="confirm"><span class="tag">Sent</span><b>Thank you, ${esc(n)}.</b><p>Your form has been received. The Academy team will create your login and send it to you on WhatsApp (${esc(ph)}). Please keep it private.</p></div>`;$('#stform').reset()}
-    else{let d='';try{const j=await r.json();d=typeof j.detail==='string'?j.detail:(j.detail&&j.detail[0]&&j.detail[0].msg)||''}catch(_){}warn(d?esc(d):'We could not send your form. Please email thereliablenutraid.info@trnorg.com.')}
-  }catch(err){warn('We could not send your form. Please email thereliablenutraid.info@trnorg.com.')}
-  clearTimeout(to);btn.disabled=false;btn.textContent='Submit enrolment form';
-});
 /* patient area (preview: everything is held in memory, nothing is saved or sent). Example data below is fictional. */
 const APPDATA={
  "_note": "FICTIONAL EXAMPLE DATA for the preview of The Reliable NutrAid patient app. Not real people, not clinical advice. Ranges, doses and guidance are placeholders that a doctor must replace.",
