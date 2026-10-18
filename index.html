@@ -651,46 +651,37 @@ footer .script{color:var(--mint)}
 <section class="view" id="v-academy" data-title="Academy students"><div class="wrap">
   <div class="head"><p class="eyebrow">Academy students</p><h1>Learn with a dietitian mentor</h1><p class="mute">Students of The Reliable NutrAid Academy practise the Nutrition Care Process on case studies, guided by a registered dietitian. Enrol below, or sign in if you already have your login.</p></div>
   <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:26px 28px;box-shadow:var(--shadow);max-width:880px;margin:0 auto 34px">
-    <div style="flex:1;min-width:240px"><b style="font-family:var(--fh);font-size:1.35rem;font-weight:600">Already enrolled?</b><p class="mute" style="margin:6px 0 0">Sign in with the login the Academy sent to your email. You will choose your own password the first time.</p></div>
+    <div style="flex:1;min-width:240px"><b style="font-family:var(--fh);font-size:1.35rem;font-weight:600">Already enrolled?</b><p class="mute" style="margin:6px 0 0">Sign in with the login the Academy sent you on WhatsApp. You will choose your own password the first time.</p></div>
     <a class="btn" href="https://crm.trnorg.com" target="_blank" rel="noopener">Student sign in</a></div>
   <div class="formgrid">
     <div>
       <form class="book" id="stform" novalidate>
         <div class="f2">
-          <label for="s-name">Full name<input id="s-name" autocomplete="name" required maxlength="120"></label>
+          <label for="s-name">Full name, exactly as you want it on your certificate<input id="s-name" autocomplete="name" required maxlength="120"></label>
           <label for="s-inst">Institution or university<input id="s-inst" maxlength="160"></label>
         </div>
         <div class="f2">
           <label for="s-prog">Programme and year of study<input id="s-prog" maxlength="160"></label>
-          <label for="s-no">Student ID number<input id="s-no" maxlength="60"></label>
+          <label for="s-phone">WhatsApp number (with country code)<input id="s-phone" autocomplete="tel" required maxlength="40" placeholder="+971 50 123 4567"></label>
         </div>
-        <div class="f2">
-          <label for="s-email">Your personal email (we send your login here)<input id="s-email" type="email" autocomplete="email" required maxlength="160"></label>
-          <label for="s-phone">Mobile or WhatsApp number<input id="s-phone" autocomplete="tel" maxlength="40"></label>
+        <div class="box" style="font-size:.95rem"><b>Student consent</b>
+          <p style="margin:10px 0 2px"><b>1. What this is</b></p><p class="mute" style="margin:0">You are in supervised training at The Reliable NutrAid Academy. Your mentor is a registered dietitian. You practise on case studies, which are fictional patients. Your mentor may also share real patients with you to read, and may allow you to take part in their care, under supervision.</p>
+          <p style="margin:10px 0 2px"><b>2. Patient privacy</b> I will:</p>
+          <ul class="checklist"><li>Keep every real patient's information private.</li><li>Not copy, photograph, screenshot, print or share it, including on social media.</li><li>Open only the patients my mentor has shared with me.</li></ul>
+          <p style="margin:10px 0 2px"><b>3. Supervised work</b></p><p class="mute" style="margin:0">I will give medical nutrition therapy to a real patient only when my mentor allows it and supervises. My mentor reviews and signs my work.</p>
+          <p style="margin:10px 0 2px"><b>4. My login and my details</b></p>
+          <ul class="checklist"><li>My login is personal. I will not share my password, I will change my first password, and I will tell my mentor if someone else used my login.</li><li>The Academy keeps my name, WhatsApp number, institution and my work in the Academy account, to run the training. It does not sell my data. I can ask to see, correct or delete it.</li></ul>
+          <p style="margin:10px 0 2px"><b>5. Rules and leaving</b></p><p class="mute" style="margin:0">If I break these rules, the Academy can remove my access. I can leave at any time by telling my mentor. My privacy duties continue after I leave.</p>
         </div>
-        <div class="f2">
-          <label for="s-emerg">Emergency contact (name and number)<input id="s-emerg" maxlength="160"></label>
-          <label for="s-start">Preferred start date<input id="s-start" maxlength="60" placeholder="e.g. 1 November 2026"></label>
-        </div>
-        <div class="box" style="max-height:300px;overflow:auto;font-size:.95rem"><b>Student consent</b><p class="mute" style="margin:6px 0">Please read before you submit.</p>
-          <ul class="checklist">
-            <li>You work on case studies (fictional patients) under your mentor, a registered dietitian. Real patients are visible to you only if your mentor shares them, for reading only, with contact details hidden.</li>
-            <li>Real patient information is confidential. You will not copy, photograph, screenshot, download, print or write down a real patient's details, and you will not discuss a real patient outside the Academy, including on social media.</li>
-            <li>You will not try to identify or contact a real patient, or open any record your mentor has not shared with you.</li>
-            <li>Your login is personal. You will not share it, and you will change your first password when you sign in. Tell your mentor at once if someone else may have used your login.</li>
-            <li>We keep your name, email, phone, institution, cohort, mentor and your activity in the Academy account, to create your login and supervise your learning. We do not sell your data. You can ask to see, correct or delete it, unless we must keep it by law.</li>
-            <li>This is training, not practice. You will not give nutrition or medical advice to real patients or present yourself as a clinician.</li>
-            <li>If you break these rules the Academy can remove your access. You can leave at any time by telling your mentor in writing. Your confidentiality duties continue after you leave.</li>
-          </ul></div>
         <div class="mute" style="font-size:.88rem">Please do not write a password here. Your login is created for you.</div>
-        <label class="ck" for="s-consent" style="display:flex;gap:10px;align-items:flex-start;font-weight:400"><input type="checkbox" id="s-consent" style="width:auto;margin-top:5px"><span>I have read and I agree to the Academy student consent above. The details I gave are correct.</span></label>
+        <label class="ck" for="s-consent" style="display:flex;gap:10px;align-items:flex-start;font-weight:400"><input type="checkbox" id="s-consent" style="width:auto;margin-top:5px"><span>I have read and understood the student consent above and I agree to follow it. The details I gave are correct.</span></label>
         <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="s-web">Leave this empty<input id="s-web" tabindex="-1" autocomplete="off"></label></div>
         <button class="btn" type="submit" id="s-send">Submit enrolment form</button>
         <div id="stmsg" role="status"></div>
       </form>
     </div>
     <div class="side">
-      <div class="box rv"><h3>What happens next</h3><ul class="checklist"><li>The Academy team receives your form</li><li>We create your login and send it to your email</li><li>You sign in and choose your own password</li></ul></div>
+      <div class="box rv"><h3>What happens next</h3><ul class="checklist"><li>The Academy team receives your form</li><li>We create your login and send it to you on WhatsApp</li><li>You sign in and choose your own password</li></ul></div>
       <div class="note rv"><b>Questions?</b> Email thereliablenutraid.info@trnorg.com.</div>
     </div>
   </div>
@@ -811,16 +802,16 @@ $('#copy').onclick=async()=>{const t=$('#mail').textContent;try{await navigator.
 const ST_END='https://crm.trnorg.com/api/v1/public/student-applications',ST0=Date.now();
 $('#stform').addEventListener('submit',async e=>{
   e.preventDefault();
-  const m=$('#stmsg'),btn=$('#s-send'),n=$('#s-name').value.trim(),em=$('#s-email').value.trim();
+  const m=$('#stmsg'),btn=$('#s-send'),n=$('#s-name').value.trim(),ph=$('#s-phone').value.trim();
   const warn=t=>m.innerHTML=`<div class="note" role="alert">${t}</div>`;
-  if(!n||!em)return warn('Please add your full name and your personal email.');
+  if(!n||!ph)return warn('Please add your full name and your WhatsApp number.');
   if(!$('#s-consent').checked)return warn('Please tick the box to confirm you have read and agree to the student consent.');
   if(!LIVE){m.innerHTML='<div class="confirm"><span class="tag">Preview</span><b>Thank you.</b><p class="mute">This is a preview: nothing was sent.</p></div>';return}
   btn.disabled=true;btn.textContent='Sending…';warn('Sending your form. The first one can take up to a minute while our system wakes up.');
   const ctl=new AbortController(),to=setTimeout(()=>ctl.abort(),90000);
   try{
-    const r=await fetch(ST_END,{method:'POST',headers:{'Content-Type':'application/json'},signal:ctl.signal,body:JSON.stringify({name:n,institution:$('#s-inst').value,programme:$('#s-prog').value,student_no:$('#s-no').value,contact_email:em,phone:$('#s-phone').value,emergency:$('#s-emerg').value,start_pref:$('#s-start').value,consent:true,website:$('#s-web').value,ms:Date.now()-ST0})});
-    if(r.ok){m.innerHTML=`<div class="confirm"><span class="tag">Sent</span><b>Thank you, ${esc(n)}.</b><p>Your form has been received. The Academy team will create your login and send it to ${esc(em)}. Please keep that email private.</p></div>`;$('#stform').reset()}
+    const r=await fetch(ST_END,{method:'POST',headers:{'Content-Type':'application/json'},signal:ctl.signal,body:JSON.stringify({name:n,institution:$('#s-inst').value,programme:$('#s-prog').value,phone:ph,consent:true,website:$('#s-web').value,ms:Date.now()-ST0})});
+    if(r.ok){m.innerHTML=`<div class="confirm"><span class="tag">Sent</span><b>Thank you, ${esc(n)}.</b><p>Your form has been received. The Academy team will create your login and send it to you on WhatsApp (${esc(ph)}). Please keep it private.</p></div>`;$('#stform').reset()}
     else{let d='';try{const j=await r.json();d=typeof j.detail==='string'?j.detail:(j.detail&&j.detail[0]&&j.detail[0].msg)||''}catch(_){}warn(d?esc(d):'We could not send your form. Please email thereliablenutraid.info@trnorg.com.')}
   }catch(err){warn('We could not send your form. Please email thereliablenutraid.info@trnorg.com.')}
   clearTimeout(to);btn.disabled=false;btn.textContent='Submit enrolment form';
