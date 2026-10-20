@@ -523,7 +523,10 @@ footer .script{color:var(--mint)}
         <div class="rv"><span class="n">3</span><h3>Keep improving</h3><p class="mute">Follow-ups and reminders that adjust as you do.</p></div>
       </div>
     </div>
-    <div class="cta-band rv"><span class="script">Nourishing Lives</span><h2>Ready when you are</h2><p>Tell us what you need and we will match you with the right doctor, dietitian or both.</p><button class="btn" data-go="book">Book a consultation</button></div>
+    <div id="sc-sec" class="sc" hidden><div class="center"><p class="eyebrow">Real stories</p><h2>From the people we care for</h2><p class="mute sc-lead">Shared with each person's written consent. Results vary from person to person.</p></div>
+<div id="sc-ba" class="sc-ba" hidden><div class="sc-tabs" id="sc-tabs"></div><div class="sc-cmp" id="sc-cmp"><div class="sc-p sc-pb"></div><div class="sc-p sc-pa"></div><span class="sc-l sc-l1">Before</span><span class="sc-l sc-l2">After</span><div class="sc-hd"></div><input type="range" min="0" max="100" value="50" id="sc-bar" aria-label="Drag to compare before and after"></div><p class="mute sc-cap" id="sc-cap"></p></div>
+<div id="sc-tst" class="sc-grid" hidden></div><div id="sc-vid" class="sc-grid" hidden></div></div>
+<div class="cta-band rv"><span class="script">Nourishing Lives</span><h2>Ready when you are</h2><p>Tell us what you need and we will match you with the right doctor, dietitian or both.</p><button class="btn" data-go="book">Book a consultation</button></div>
   </div>
 </section>
 
@@ -1629,5 +1632,37 @@ const _finder=finder;finder=function(){_finder()};
 grid();arm();
 </script>
 
+<style>
+/* real stories: content each clinic publishes from its CRM (Website page) */
+.sc[hidden],.sc [hidden]{display:none!important}.sc{margin:64px 0 8px}.sc-lead{max-width:620px;margin:10px auto 0}
+.sc-ba{display:grid;gap:14px;margin-top:28px}.sc-tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}.sc-tabs button{font:inherit;font-size:14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 16px;border-radius:999px;cursor:pointer}.sc-tabs button[aria-pressed="true"]{background:var(--navy);color:var(--navy-ink);border-color:var(--navy);font-weight:600}
+.sc-cmp{position:relative;aspect-ratio:16/10;max-height:520px;width:100%;max-width:900px;margin:0 auto;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--surface2);user-select:none;touch-action:pan-y;box-shadow:var(--shadow)}
+.sc-p{position:absolute;inset:0;background-size:cover;background-position:center}.sc-pa{clip-path:inset(0 0 0 var(--x,50%))}.sc-hd{position:absolute;top:0;bottom:0;left:var(--x,50%);width:2px;margin-left:-1px;background:#fff;box-shadow:0 0 0 1px rgba(10,20,80,.25)}.sc-hd::after{content:"‹ ›";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:#fff;color:#0A1450;display:grid;place-items:center;font-weight:700;box-shadow:var(--shadow)}
+.sc-l{position:absolute;top:12px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;background:rgba(10,20,80,.72);color:#fff;padding:4px 10px;border-radius:99px}.sc-l1{left:12px}.sc-l2{right:12px}
+.sc-cmp input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}.sc-cap{text-align:center;margin:0}
+.sc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:28px}
+.sc-t{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;display:grid;gap:10px;align-content:start;box-shadow:var(--shadow)}.sc-t q{font-family:var(--fh);font-size:1.15rem;line-height:1.45;quotes:"“" "”"}.sc-who{color:var(--mute);font-size:.92rem}.sc-who b{color:var(--ink)}
+.sc-face{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--green-bg)}.sc-stars{color:#E3A008;letter-spacing:.1em}.sc-stars span{opacity:.25}
+.sc-v{position:relative;min-height:220px;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(160deg,var(--navy),#1F8A47);color:#fff;text-align:left;padding:20px;display:grid;align-content:end;font:inherit;cursor:pointer;background-size:cover;background-position:center}.sc-v i{position:absolute;top:18px;left:18px;width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.92);color:#0A1450;display:grid;place-items:center;font-style:normal}.sc-v b{font-family:var(--fh);font-size:1.25rem}.sc-v span{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;opacity:.85}
+.sc-modal{position:fixed;inset:0;z-index:200;background:rgba(5,8,30,.86);display:grid;place-items:center;padding:16px}.sc-box{position:relative;width:min(960px,100%);aspect-ratio:16/9}.sc-box iframe{width:100%;height:100%;border:0;border-radius:12px;background:#000}.sc-x{position:absolute;top:-46px;right:0;background:#fff;border:0;color:#0A1450;width:38px;height:38px;border-radius:50%;font-size:22px;cursor:pointer}
+</style>
+<script>
+(function(){var SITE='https://crm.trnorg.com',BA=[];function $(i){return document.getElementById(i)}
+function esc(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function stars(n){return n?'<div class="sc-stars" role="img" aria-label="'+n+' out of 5 stars">'+'★★★★★'.slice(0,n)+'<span>'+'★★★★★'.slice(n)+'</span></div>':''}
+function ytThumb(u){var m=/youtube-nocookie\.com\/embed\/([\w-]+)/.exec(u||'');return m?'https://i.ytimg.com/vi/'+m[1]+'/hqdefault.jpg':''}
+function show(i){var b=BA[i];$('sc-tabs').innerHTML=BA.length>1?BA.map(function(x,k){return '<button type="button" aria-pressed="'+(k===i)+'" data-k="'+k+'">'+esc(x.title||x.treatment||('Story '+(k+1)))+'</button>'}).join(''):'';
+ document.querySelector('.sc-pb').style.backgroundImage='url("'+SITE+b.images.before+'")';document.querySelector('.sc-pa').style.backgroundImage='url("'+SITE+b.images.after+'")';
+ $('sc-cap').textContent=[BA.length===1?b.title:'',b.treatment,b.body].filter(Boolean).join('. ')+(BA.length===1&&b.title||b.treatment||b.body?'. ':'')+'Drag to compare.'}
+function load(){fetch(SITE+'/api/v1/public/site/trn/items').then(function(r){return r.json()}).then(function(j){var L=j.items||[];if(!L.length)return;$('sc-sec').hidden=false;
+ BA=L.filter(function(x){return x.kind==='result'});var T=L.filter(function(x){return x.kind==='testimonial'}),V=L.filter(function(x){return x.kind==='video'});
+ if(BA.length){$('sc-ba').hidden=false;show(0)}
+ if(T.length){$('sc-tst').hidden=false;$('sc-tst').innerHTML=T.map(function(t){return '<figure class="sc-t">'+(t.images.photo?'<img class="sc-face" src="'+SITE+t.images.photo+'" alt="" loading="lazy">':'')+stars(t.rating)+'<q>'+esc(t.body)+'</q><figcaption class="sc-who"><b>'+esc(t.person)+'</b>'+(t.treatment?' · '+esc(t.treatment):'')+'</figcaption></figure>'}).join('')}
+ if(V.length){$('sc-vid').hidden=false;$('sc-vid').innerHTML=V.map(function(v){var th=ytThumb(v.embed);return '<button type="button" class="sc-v" data-v="'+esc(v.embed)+'"'+(th?' style="background-image:linear-gradient(180deg,rgba(10,20,80,.05),rgba(10,20,80,.85)),url('+th+')"':'')+'><i>▶</i><span>'+esc(v.treatment||'Video')+'</span><b>'+esc(v.title||'Watch')+'</b></button>'}).join('')}
+}).catch(function(){})}
+document.addEventListener('click',function(e){var t=e.target.closest('#sc-tabs button');if(t)show(+t.dataset.k);var b=e.target.closest('[data-v]');if(!b)return;var m=document.createElement('div');m.className='sc-modal';m.innerHTML='<div class="sc-box"><button type="button" class="sc-x" aria-label="Close">×</button><iframe src="'+b.dataset.v+(b.dataset.v.indexOf('youtube')>0?'?autoplay=1&rel=0':'')+'" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="Video"></iframe></div>';document.body.appendChild(m);m.addEventListener('click',function(ev){if(ev.target===m||ev.target.closest('.sc-x'))m.remove()})});
+document.addEventListener('input',function(e){if(e.target.id==='sc-bar')$('sc-cmp').style.setProperty('--x',e.target.value+'%')});
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',load);else load()})();
+</script>
 </body>
 </html>
