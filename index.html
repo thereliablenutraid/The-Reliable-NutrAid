@@ -511,6 +511,22 @@ header.top.open .mb span{background:transparent}header.top.open .mb span::before
 .sport-cta{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--red);border-radius:16px;padding:20px 24px;margin:0 0 22px;cursor:pointer}
 .sport-cta>span:first-child{display:grid;gap:4px}.sport-cta b{font-family:var(--fh);font-size:1.15rem}
 @media(max-width:860px){.care{grid-template-columns:minmax(0,1fr)}.care-sec{margin-top:80px}.sport-cta{flex-direction:column;align-items:flex-start}}
+
+/* v115 team from the CRM, follow us */
+#fol-sec[hidden],#fol-foot[hidden],#allied-sec[hidden],.sect[hidden]{display:none!important}
+.member{border-style:solid;gap:12px}.member>div>b{font-family:var(--fh);font-weight:600;font-size:1.2rem}
+.mphoto{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid var(--surface);box-shadow:0 8px 24px -12px rgba(10,20,80,.45)}
+.mrole{color:var(--red);font-weight:700;font-size:.85rem;letter-spacing:.04em;margin-top:2px}
+.mbio{font-size:.92rem;margin:0}
+.mlinks{display:flex;gap:12px;font-weight:700;font-size:.88rem}.mlinks a{color:var(--ink)}
+.fol{text-align:center}
+.fol-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px}
+.fol-b{display:inline-flex;align-items:center;padding:11px 20px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:700;text-decoration:none;transition:transform .25s,border-color .25s}
+.fol-b:hover{transform:translateY(-2px);border-color:var(--ink)}
+.fol-posts{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin-top:30px;align-items:flex-start}.fol-posts>*{flex:0 1 320px}
+.fol-posts:empty{display:none}
+.fol-f{width:100%;height:560px;border:1px solid var(--line);border-radius:18px;background:var(--surface)}.fol-f.tt{height:600px}
+.fol-yt{aspect-ratio:9/12;width:100%}
 </style>
 </head>
 <body>
@@ -562,6 +578,7 @@ header.top.open .mb span{background:transparent}header.top.open .mb span::before
     <div id="sc-sec" class="sc" hidden><div class="center"><p class="eyebrow">Real stories</p><h2>From the people we care for</h2><p class="mute sc-lead">Shared with each person's written consent. Results vary from person to person.</p></div>
 <div id="sc-ba" class="sc-ba" hidden><div class="sc-tabs" id="sc-tabs"></div><div class="sc-cmp" id="sc-cmp"><div class="sc-p sc-pb"></div><div class="sc-p sc-pa"></div><span class="sc-l sc-l1">Before</span><span class="sc-l sc-l2">After</span><div class="sc-hd"></div><input type="range" min="0" max="100" value="50" id="sc-bar" aria-label="Drag to compare before and after"></div><p class="mute sc-cap" id="sc-cap"></p></div>
 <div id="sc-tst" class="sc-grid" hidden></div><div id="sc-vid" class="sc-grid" hidden></div></div>
+<div id="fol-sec" class="air fol" hidden><div class="center"><p class="eyebrow">Follow us</p><h2>Tips, recipes and real care, every week</h2></div><div class="fol-btns" id="fol-btns"></div><div class="fol-posts" id="fol-posts"></div></div>
 <div class="cta-band rv"><span class="script">Nourishing Lives</span><h2>Ready when you are</h2><p>Tell us what you need and we will match you with the right doctor, dietitian or both.</p><button class="btn" data-go="book">Book a consultation</button></div>
   </div>
 </section>
@@ -665,6 +682,7 @@ header.top.open .mb span{background:transparent}header.top.open .mb span::before
   <div class="head"><p class="eyebrow">Our team</p><h1>Doctors and dietitians, working together</h1><p class="mute">Doctors assess and diagnose. Dietitians help you choose and follow a way of eating that suits your condition. You are matched with the right people for your condition.</p></div>
   <div class="sect" style="margin-top:0"><h2>Our doctors</h2><div class="team" id="docs"></div></div>
   <div class="sect"><h2>Our dietitians</h2><div class="team" id="team"></div></div>
+  <div class="sect" id="allied-sec" hidden><h2>Psychology, physiotherapy and care</h2><div class="team" id="allied"></div></div>
   <div class="sect">
     <div><h2>How a dietitian earns a specialty</h2><p class="mute" style="margin-top:8px;max-width:60ch">Before seeing patients in a specialty, a dietitian goes through four stages. This is how we keep care consistent.</p></div>
     <div class="path">
@@ -769,6 +787,7 @@ header.top.open .mb span{background:transparent}header.top.open .mb span::before
   <div><b style="font-family:var(--fh);font-weight:600;font-size:1.25rem">The Reliable NutrAid</b><span class="script" style="display:block;margin-top:2px">Nourishing Lives</span>
     <small style="margin-top:10px;font-weight:600;color:var(--ink)">Powered by Drivana</small><small>in collaboration with Nutrena</small></div>
   <div><b>Explore</b><ul><li><a href="#services" data-go="services">Services</a></li><li><a href="#sports" data-go="sports">Sports nutrition</a></li><li><a href="#how" data-go="how">How it works</a></li><li><a href="#team" data-go="team">Our team</a></li><li><a href="#book" data-go="book">Book a consultation</a></li><li><a href="#academy" data-go="academy">Academy students</a></li></ul></div>
+  <div id="fol-foot" hidden><b>Follow us</b><ul id="fol-list"></ul></div>
   <div><b>For professionals</b><ul><li><a href="https://crm.trnorg.com" target="_blank" rel="noopener">Staff sign in</a></li><li><a href="https://crm.trnorg.com" target="_blank" rel="noopener">Student sign in</a></li><li><a href="https://dripwithdrivana.com/programs" target="_blank" rel="noopener">DRIVANA Nutrition Academy</a></li></ul></div>
   <div class="legal">Information on this website is general. Medical diagnosis and treatment are given only in a consultation with a doctor. This service is not for emergencies: in an emergency, contact your local emergency services.</div>
 </div></footer>
@@ -1697,7 +1716,19 @@ function ytThumb(u){var m=/youtube-nocookie\.com\/embed\/([\w-]+)/.exec(u||'');r
 function show(i){var b=BA[i];$('sc-tabs').innerHTML=BA.length>1?BA.map(function(x,k){return '<button type="button" aria-pressed="'+(k===i)+'" data-k="'+k+'">'+esc(x.title||x.treatment||('Story '+(k+1)))+'</button>'}).join(''):'';
  document.querySelector('.sc-pb').style.backgroundImage='url("'+SITE+b.images.before+'")';document.querySelector('.sc-pa').style.backgroundImage='url("'+SITE+b.images.after+'")';
  $('sc-cap').textContent=[BA.length===1?b.title:'',b.treatment,b.body].filter(Boolean).join('. ')+(BA.length===1&&b.title||b.treatment||b.body?'. ':'')+'Drag to compare.'}
-function load(){fetch(SITE+'/api/v1/public/site/trn/items').then(function(r){return r.json()}).then(function(j){var L=j.items||[];if(!L.length)return;$('sc-sec').hidden=false;
+var SOC=[['instagram','Instagram'],['facebook','Facebook'],['tiktok','TikTok'],['youtube','YouTube'],['linkedin','LinkedIn'],['x','X'],['whatsapp','WhatsApp']];
+function lk(u,t,c){return '<a class="'+(c||'')+'" href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(t)+'</a>'}
+function member(m){var L=m.links||{};return '<div class="person member">'+(m.images.photo?'<img class="mphoto" src="'+SITE+m.images.photo+'" alt="Photo of '+esc(m.person)+'" loading="lazy">':'<div class="avatar" aria-hidden="true">'+esc((m.person.match(/^(Dr\.|Dt\.)/)||[''])[0]||m.person.charAt(0))+'</div>')+
+ '<div><b>'+esc(m.person)+'</b><div class="mrole">'+esc(m.title)+'</div>'+(m.treatment?'<div class="mute" style="font-size:.92rem">'+esc(m.treatment)+'</div>':'')+'</div>'+(m.body?'<p class="mute mbio">'+esc(m.body)+'</p>':'')+(m.credential?'<div class="mute" style="font-size:.82rem">'+esc(m.credential)+'</div>':'')+
+ ((L.instagram||L.linkedin)?'<div class="mlinks">'+(L.instagram?lk(L.instagram,'Instagram'):'')+(L.linkedin?lk(L.linkedin,'LinkedIn'):'')+'</div>':'')+'</div>'}
+function teamFill(M){if(!M.length)return;var by=function(f){return M.filter(f).map(member).join('')},D=by(function(m){return m.section==='doctor'}),T=by(function(m){return m.section==='dietitian'}),O=by(function(m){return m.section!=='doctor'&&m.section!=='dietitian'});
+ $('docs').innerHTML=D;$('docs').parentNode.hidden=!D;$('team').innerHTML=T;$('team').parentNode.hidden=!T;$('allied').innerHTML=O;$('allied-sec').hidden=!O}
+function social(S,P){var B=SOC.filter(function(x){return S[x[0]]});
+ if(B.length){$('fol-foot').hidden=false;$('fol-list').innerHTML=B.map(function(x){return '<li>'+lk(S[x[0]],x[1])+'</li>'}).join('');$('fol-btns').innerHTML=B.map(function(x){return lk(S[x[0]],x[1],'fol-b')}).join('')}
+ if(P.length)$('fol-posts').innerHTML=P.map(function(p){return p.embed.indexOf('youtube')>0?'<button type="button" class="sc-v fol-yt" data-v="'+esc(p.embed)+'" style="background-image:linear-gradient(180deg,rgba(10,20,80,.05),rgba(10,20,80,.8)),url('+ytThumb(p.embed)+')"><i>▶</i><b>'+esc(p.title||'Watch')+'</b></button>':'<iframe class="fol-f'+(p.embed.indexOf('tiktok')>0?' tt':'')+'" src="'+esc(p.embed)+'" loading="lazy" title="'+esc(p.title||'Social media post')+'" allowfullscreen></iframe>'}).join('');
+ if(B.length||P.length)$('fol-sec').hidden=false}
+function load(){fetch(SITE+'/api/v1/public/site/trn/items').then(function(r){return r.json()}).then(function(j){var A=j.items||[];teamFill(A.filter(function(x){return x.kind==='team'}));social(j.social||{},A.filter(function(x){return x.kind==='post'&&x.embed}));
+ var L=A.filter(function(x){return x.kind==='result'||x.kind==='testimonial'||x.kind==='video'});if(!L.length)return;$('sc-sec').hidden=false;
  BA=L.filter(function(x){return x.kind==='result'});var T=L.filter(function(x){return x.kind==='testimonial'}),V=L.filter(function(x){return x.kind==='video'});
  if(BA.length){$('sc-ba').hidden=false;show(0)}
  if(T.length){$('sc-tst').hidden=false;$('sc-tst').innerHTML=T.map(function(t){return '<figure class="sc-t">'+(t.images.photo?'<img class="sc-face" src="'+SITE+t.images.photo+'" alt="" loading="lazy">':'')+stars(t.rating)+'<q>'+esc(t.body)+'</q><figcaption class="sc-who"><b>'+esc(t.person)+'</b>'+(t.treatment?' · '+esc(t.treatment):'')+'</figcaption></figure>'}).join('')}
